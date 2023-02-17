@@ -1,0 +1,58 @@
+@startuml
+
+class Sewing {
+    -id: int
+    -name: string
+    -email: string
+    -password: string
+    -created_at: datetime
+}
+
+class Projects {
+    -id: int
+    -title: string
+    -description: string
+    -images: string
+    -visibility_code: int
+    -type: string
+    -keywords: string
+    -created_at: datetime
+    -deadline: datetime
+    -price: int
+    -payment_status: boolean
+    -show_to_strangers: boolean
+}
+
+class Clients {
+    -id: int
+    -name: string
+    -email: string
+    -phone: string
+    -created_at: datetime
+    -major_type: string
+    -height: int
+    -arm_length: int
+    -leg_length: int
+    -waist: int
+    -chest: int
+    -hips: int
+    -neck: int
+    -shoulder: int
+    -bicep: int
+}
+
+class Todos {
+    -id: int
+    -title: string
+    -created_at: datetime
+    -done: boolean
+}
+
+Sewing "1" -- "0..*" Clients : owns
+
+Sewing "1" -- "0..*" Projects : owns
+Projects "1" -- "1" Clients : has
+Projects "1" -- "0..*" Todos : has
+
+
+@enduml
