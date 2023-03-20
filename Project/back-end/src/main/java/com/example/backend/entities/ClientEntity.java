@@ -18,6 +18,7 @@ import java.util.List;
 @Table(name = "clients")
 public class ClientEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String gender;

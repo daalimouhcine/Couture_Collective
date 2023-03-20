@@ -18,6 +18,7 @@ import java.util.List;
 @Table(name = "projects")
 public class ProjectEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
