@@ -7,6 +7,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../alert/alert.module';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { AlertModule } from '../alert/alert.module';
     AuthRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }
