@@ -1,10 +1,159 @@
 <div class="w-full min-h-screen bg-indigo-800">
   <div
-    class="w-full h-screen grid place-items-center bg-white rounded-tl-[50px]"
+    class="w-full h-screen grid place-items-center pattern-cross-dots-md text-indigo-700 bg-white rounded-tl-[50px]"
   >
-  <div className="absolute z-10 inset-0 bg-gradient-to-r from-green-300/50 to-green-700 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-    <div class="w-full relative z-20 shadow-2xl">
-        
+    <div class="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12">
+      <div class="w-full z-20 shadow-2xl">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+          <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div>
+              <h2 class="text-3xl font-bold text-center text-[#1e2762] mt-10">
+                Sign Up
+              </h2>
+              <p class="text-center text-[#1e2762] mt-2">
+                Already have an account?
+                <a href="#" class="text-blue-500">Sign In</a>
+              </p>
+            </div>
+            <form
+              [formGroup]="registerForm"
+              (ngSubmit)="register(registerForm)"
+              class="space-y-6"
+              action="#"
+              method="POST"
+            >
+              <div>
+                <label
+                  for="fullName"
+                  class="block text-sm font-medium text-gray-700"
+                >
+                  Full Name
+                </label>
+                <div class="mt-1">
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    formControlName="fullName"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <p class="text-red-500 text-xs">
+                  <span
+                    *ngIf="
+                      registerForm.get('fullName')?.hasError('required') &&
+                      registerForm.get('fullName')?.touched
+                    "
+                  >
+                    Full Name is required
+                  </span>
+                  <!-- add error for minlengh 3 -->
+                  <span
+                    *ngIf="
+                      registerForm.get('fullName')?.hasError('minlength') &&
+                      registerForm.get('fullName')?.touched
+                    "
+                  >
+                    Full Name must be at least 3 characters
+                  </span>
+                </p>
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700"
+                >
+                  Email address
+                </label>
+                <div class="mt-1">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    formControlName="email"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <p class="text-red-500 text-xs">
+                  <span
+                    *ngIf="
+                      registerForm.get('email')?.hasError('required') &&
+                      registerForm.get('email')?.touched
+                    "
+                  >
+                    Email is required
+                  </span>
+                  <!-- add error for minlengh 3 -->
+                  <span
+                    *ngIf="
+                      registerForm.get('email')?.hasError('minlength') &&
+                      registerForm.get('email')?.touched
+                    "
+                  >
+                    Email must be at least 3 characters
+                  </span>
+                  <!-- add error for email pattern -->
+                  <span
+                    *ngIf="
+                      registerForm.get('email')?.hasError('pattern') &&
+                      registerForm.get('email')?.touched
+                    "
+                  >
+                    Email must be valid
+                  </span>
+              </div>
+
+              <div>
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <div class="mt-1">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    formControlName="password"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <p class="text-red-500 text-xs">
+                  <span
+                    *ngIf="
+                      registerForm.get('password')?.hasError('required') &&
+                      registerForm.get('password')?.touched
+                    "
+                  >
+                    Password is required
+                  </span>
+                  <!-- add error for minlengh 6 -->
+                  <span
+                    *ngIf="
+                      registerForm.get('password')?.hasError('minlength') &&
+                      registerForm.get('password')?.touched
+                    "
+                  >
+                    Password must be at least 6 characters
+                  </span>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
