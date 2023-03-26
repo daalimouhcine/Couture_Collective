@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   public loadToken(): string {
-    const currentToken = localStorage.getItem("accessToken");
+    const currentToken = localStorage.getItem("token");
     return currentToken != null ? currentToken : "";
   }
 
@@ -32,24 +32,24 @@ export class AuthService {
 * Setter & getter for access token
 */
 
-  set accessToken(token: string) {
-    localStorage.setItem("accessToken", token);
+  set token(token: string) {
+    localStorage.setItem("token", token);
   }
 
-  get accessToken(): string {
-    return localStorage.getItem("accessToken") ?? '';
+  get token(): string {
+    return localStorage.getItem("token") ?? '';
   }
 
   signIn(credentials: User): Observable<any> {
-    return this._http.post<any>(environment.baseApi + 'auth/signin', credentials).pipe(
+    return this._http.post<any>(environment.baseApi + 'auth/login', credentials).pipe(
       catchError((error) => {
         return of(null)
       }),
       switchMap((response) => {
         if(response != null) {
-          this.accessToken = response.accessToken;
+          this.token = response.token;
           this.authenticated = true;
-          this.saveUserToLocalStorage(response.user);
+          this.saveUserToLocalStorage(response.tailorResponse);
         }
         return of(response);
       })
@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   signUp(user: User): Observable<any> {
-    return this._http.post<any>(environment.baseApi + 'auth/signup', user).pipe(
+    return this._http.post<any>(environment.baseApi + 'auth/register', user).pipe(
       catchError((error) => {
         return of(null)
       }),
@@ -68,8 +68,8 @@ export class AuthService {
   }
 
   checkAuth(): Observable<boolean> {
-    if(this.accessToken) {
-      return this._http.post<any>(environment.baseApi + 'auth/check-token', this.accessToken).pipe(
+    if(this.token) {
+      return this._http.post<any>(environment.baseApi + 'auth/check-token', this.token).pipe(
         catchError(error => {
           return of(false)
         }),
@@ -83,13 +83,13 @@ export class AuthService {
 
   signOut(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/sign-in']);
+    this.router.navigate(['/auth/login']);
     window.location.reload();
   }
 
   logoutWithGuard(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/sign-in']);
+    this.router.navigate(['/auth/login']);
   }
 
 }

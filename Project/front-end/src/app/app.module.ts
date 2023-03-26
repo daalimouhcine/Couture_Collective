@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ViewsSharedModule } from './views/views-shared/views-shared.module';
 import {MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -17,7 +18,8 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     MatProgressBarModule,
     ViewsSharedModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
