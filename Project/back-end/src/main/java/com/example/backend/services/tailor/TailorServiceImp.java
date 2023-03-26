@@ -29,6 +29,7 @@ public class TailorServiceImp implements TailorService {
                 return loggedInTailorDto;
             }
         }
+        System.out.println("not correct");
         return null;
     }
 
@@ -58,6 +59,9 @@ public class TailorServiceImp implements TailorService {
     @Override
     public TailorDto findTailorByEmail(String email) {
         TailorEntity tailorEntity = tailorRepository.findByEmail(email);
+        if(tailorEntity == null) {
+            return null;
+        }
         TailorDto tailorDto = new TailorDto();
         BeanUtils.copyProperties(tailorEntity, tailorDto);
         return tailorDto;

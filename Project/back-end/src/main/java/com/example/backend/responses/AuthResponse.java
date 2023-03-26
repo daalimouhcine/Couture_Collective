@@ -9,4 +9,5 @@ public class AuthResponse {
     private String token;
     private TailorResponse tailorResponse;
     private String message;
+    private Boolean success;
 }
