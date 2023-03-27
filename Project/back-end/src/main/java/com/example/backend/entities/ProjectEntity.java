@@ -23,7 +23,6 @@ public class ProjectEntity {
     private String title;
     private String description;
     private String images; //////////////
-    private int visibility_code;
     private String type;
     private String keywords; ////////////////
     private LocalDateTime createdAt;
@@ -32,6 +31,7 @@ public class ProjectEntity {
     private Boolean is_paid;
     private Boolean is_completed;
     private Boolean show_to_public;
+    private int visibility_code;
 
     @ManyToOne
     @JoinColumn(name = "fk_tailor_id")

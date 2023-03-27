@@ -1,0 +1,266 @@
+<div class="m-10">
+  <form action="#" method="POST">
+    <div class="mt-10 sm:mt-0">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+              Personal And Contact Information
+            </h3>
+            <p class="mt-1 text-sm text-gray-600">
+              This information is necessary for the tailor to contact you.
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+              <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="first-name"
+                    class="block text-sm font-medium text-gray-700"
+                    >Full Name</label
+                  >
+                  <input
+                    type="text"
+                    name="full-name"
+                    id="full-name"
+                    autocomplete="given-name"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="gender"
+                    class="block text-sm font-medium text-gray-700"
+                    >Gender</label
+                  >
+                  <select
+                    id="gender"
+                    name="gender"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                  <label
+                    for="email-address"
+                    class="block text-sm font-medium text-gray-700"
+                    >Email address</label
+                  >
+                  <input
+                    type="text"
+                    name="email-address"
+                    id="email-address"
+                    autocomplete="email"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700"
+                    >Phone number</label
+                  >
+                  <input
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    autocomplete="phone"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden sm:block" aria-hidden="true">
+      <div class="py-10">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mt-0">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+              Work Details
+            </h3>
+            <p class="mt-1 text-sm text-gray-600">
+              All this information is necessary for the tailor to make your
+              clothes, and it will be displaed with the clothes details.
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+              <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-6">
+                  <label
+                    for="measuring-unit"
+                    class="block text-sm font-medium text-gray-700"
+                    >Measuring Unit</label
+                  >
+                  <select
+                    id="measuring-unit"
+                    name="measuring-unit"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option value="cm">Centimeters (CM)</option>
+                    <option value="in">Inches (IN)</option>
+                    <option value="ft">Feet (FT)</option>
+                  </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                  <label
+                    for="height"
+                    class="block text-sm font-medium text-gray-700"
+                    >Height</label
+                  >
+                  <input
+                    type="text"
+                    name="height"
+                    id="height"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="arm-length"
+                    class="block text-sm font-medium text-gray-700"
+                    >Arm Length</label
+                  >
+                  <input
+                    type="text"
+                    name="arm-length"
+                    id="arm-length"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="leg-length"
+                    class="block text-sm font-medium text-gray-700"
+                    >Leg Length</label
+                  >
+                  <input
+                    type="text"
+                    name="leg-length"
+                    id="leg-length"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="waist"
+                    class="block text-sm font-medium text-gray-700"
+                    >Waist</label
+                  >
+                  <input
+                    type="text"
+                    name="waist"
+                    id="waist"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="chest"
+                    class="block text-sm font-medium text-gray-700"
+                    >Chest</label
+                  >
+                  <input
+                    type="text"
+                    name="chest"
+                    id="chest"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="hips"
+                    class="block text-sm font-medium text-gray-700"
+                    >Hips</label
+                  >
+                  <input
+                    type="text"
+                    name="hips"
+                    id="hips"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="neck"
+                    class="block text-sm font-medium text-gray-700"
+                    >Neck</label
+                  >
+                  <input
+                    type="text"
+                    name="neck"
+                    id="neck"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="shoulder"
+                    class="block text-sm font-medium text-gray-700"
+                    >Shoulder</label
+                  >
+                  <input
+                    type="text"
+                    name="shoulder"
+                    id="shoulder"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                  <label
+                    for="bicep"
+                    class="block text-sm font-medium text-gray-700"
+                    >Bicep</label
+                  >
+                  <input
+                    type="text"
+                    name="bicep"
+                    id="bicep"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="px-4 py-3 mt-10 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Add Client
+      </button>
+    </div>
+  </form>
+</div>
