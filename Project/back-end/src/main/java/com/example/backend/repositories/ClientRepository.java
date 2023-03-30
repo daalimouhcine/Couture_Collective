@@ -1,0 +1,10 @@
+package com.example.backend.repositories;
+
+import com.example.backend.entities.ClientEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ClientRepository extends CrudRepository<ClientEntity, Long> {
+    ClientEntity findByEmail(String email);
+}

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ClientEntity {
     private String gender;
     private String email;
     private String phone;
+    @CreationTimestamp
     private LocalDateTime createdAt;
     private String measuringUnit;
     private int height;

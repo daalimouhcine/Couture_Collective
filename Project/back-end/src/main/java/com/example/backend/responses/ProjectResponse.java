@@ -1,9 +1,7 @@
-package com.example.backend.entities;
+package com.example.backend.responses;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.ElementCollection;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,22 +11,13 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "projects")
-public class ProjectEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProjectResponse {
     private Long id;
     private String title;
     private String description;
-    @ElementCollection
     private List<String> images = new ArrayList<String>();
     private String type;
-    @ElementCollection
     private List<String> keywords = new ArrayList<String>();
-    @CreationTimestamp
     private LocalDateTime createdAt;
     private LocalDateTime deadline;
     private float price;
@@ -37,14 +26,6 @@ public class ProjectEntity {
     private Boolean is_completed;
     private Boolean show_to_public;
     private int visibility_code;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_tailor_id")
-    private TailorEntity tailor;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_client_id")
-    private ClientEntity client;
-
-
+    private ClientResponse client;
+    private TailorResponse tailor;
 }

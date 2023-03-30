@@ -1,4 +1,4 @@
-package com.example.backend.requests;
+package com.example.backend.responses;
 
 import lombok.Getter;
 import lombok.Setter;
