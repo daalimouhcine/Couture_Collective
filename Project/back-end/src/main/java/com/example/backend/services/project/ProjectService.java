@@ -7,13 +7,16 @@ import java.util.List;
 public interface ProjectService {
 
     List<ProjectDto> getAllProjects();
-    ProjectDto addProject(ProjectDto projectDto);
+    Boolean addProject(ProjectDto projectDto);
     ProjectDto findProjectById(Long id);
-    ProjectDto updateProject(ProjectDto projectDto);
+    List<ProjectDto> getAllProjectsByTitle(String title);
+    Boolean updateProject(Long projectId, ProjectDto projectDto);
     Boolean deleteProject(Long id);
-    List<ProjectDto> getAllProjectsByClientId(Long id);
-    List<ProjectDto> getAllProjectsByTailorId(Long id);
+    List<ProjectDto> getAllProjectsByClientId(Long clientId);
+    List<ProjectDto> getAllProjectsByTailorId(Long tailorId);
     List<ProjectDto> getAllProjectsByTailorIdAndClientId(Long tailorId, Long clientId);
-    List<ProjectDto> getAllDoneProjectsByTailorId(Long id);
+    List<ProjectDto> getAllDoneProjectsByTailorId(Long tailorId);
+    List<ProjectDto> getAllNotDoneProjectsByTailorId(Long tailorId);
+
 
 }

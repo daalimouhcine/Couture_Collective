@@ -6,10 +6,9 @@ import java.util.List;
 
 public interface ClientService {
     List<ClientDto> getAllClients();
-    ClientDto addClient(ClientDto clientDto);
-    ClientDto findClientByEmail(String email);
+    Boolean addClient(ClientDto clientDto);
     ClientDto findClientById(Long id);
-    ClientDto updateClient(ClientDto clientDto);
+    Boolean updateClient(Long clientId, ClientDto clientDto);
     Boolean deleteClient(Long id);
 
     List<ClientDto> getAllClientsByTailorId(Long id);
