@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ViewsSharedModule } from './views/views-shared/views-shared.module';
 import {MatIconModule} from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenAccessInterceptor } from './core/interceptors/token-access.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -21,7 +22,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenAccessInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

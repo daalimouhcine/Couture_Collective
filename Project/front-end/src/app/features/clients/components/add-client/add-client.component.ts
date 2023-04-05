@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FeaturesService } from 'src/app/core/services/features.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-add-client',
@@ -32,12 +33,13 @@ export class AddClientComponent implements OnInit {
     biceps: new FormControl(0, [Validators.required]),
   });
 
-  constructor(private features: FeaturesService, private router: Router) {}
+  constructor(private features: FeaturesService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   addClient(form: any): void {
     this.client = form.value;
+    this.client.tailorEmail = this.authService.getUserFromLocalStorage().email;
     if (this.addClientForm.valid) {
       this.loading = true;
       this.features
@@ -48,12 +50,12 @@ export class AddClientComponent implements OnInit {
             title: response.message,
             icon: response.success ? 'success' : 'error',
             showConfirmButton: false,
-            timer: 2000,
+            timer: 3000,
           });
           if (response.success) {
             setTimeout(() => {
               this.router.navigate(['/clients']);
-            }, 2000);
+            }, 3000);
           }
         });
     }

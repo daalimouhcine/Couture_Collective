@@ -13,4 +13,5 @@ export class Client {
     neck: number = 0;
     shoulder: number = 0;
     biceps: number = 0;
+    tailorEmail?: String = '';
 }
