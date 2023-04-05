@@ -1,5 +1,5 @@
 <div class="m-10">
-  <form action="#" method="POST">
+  <form [formGroup]="addClientForm" (ngSubmit)="addClient(addClientForm)">
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
@@ -24,11 +24,30 @@
                   >
                   <input
                     type="text"
-                    name="full-name"
-                    id="full-name"
-                    autocomplete="given-name"
+                    name="name"
+                    id="name"
+                    formControlName="name"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('name')?.hasError('required') &&
+                        addClientForm.get('name')?.touched
+                      "
+                    >
+                      Full Name is required
+                    </span>
+                    <!-- add error for minlengh 3 -->
+                    <span
+                      *ngIf="
+                        addClientForm.get('name')?.hasError('minlength') &&
+                        addClientForm.get('name')?.touched
+                      "
+                    >
+                      Full Name must be at least 3 characters
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -40,11 +59,22 @@
                   <select
                     id="gender"
                     name="gender"
+                    formControlName="gender"
                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('gender')?.hasError('required') &&
+                        addClientForm.get('gender')?.touched
+                      "
+                    >
+                      Full gender is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
@@ -58,8 +88,28 @@
                     name="email-address"
                     id="email-address"
                     autocomplete="email"
+                    formControlName="email"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('email')?.hasError('required') &&
+                        addClientForm.get('email')?.touched
+                      "
+                    >
+                      Email is required
+                    </span>
+                    <!-- add error for email valid -->
+                    <span
+                      *ngIf="
+                        addClientForm.get('email')?.hasError('email') &&
+                        addClientForm.get('email')?.touched
+                      "
+                    >
+                      Email is not valid
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
@@ -73,8 +123,19 @@
                     name="phone"
                     id="phone"
                     autocomplete="phone"
+                    formControlName="phone"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('phone')?.hasError('required') &&
+                        addClientForm.get('phone')?.touched
+                      "
+                    >
+                      Phone is required
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -115,12 +176,25 @@
                   <select
                     id="measuring-unit"
                     name="measuring-unit"
+                    formControlName="measuringUnit"
                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option value="cm">Centimeters (CM)</option>
                     <option value="in">Inches (IN)</option>
                     <option value="ft">Feet (FT)</option>
                   </select>
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm
+                          .get('measuringUnit')
+                          ?.hasError('required') &&
+                        addClientForm.get('measuringUnit')?.touched
+                      "
+                    >
+                      Measuring unit is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -130,11 +204,22 @@
                     >Height</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="height"
                     id="height"
+                    formControlName="height"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('height')?.hasError('required') &&
+                        addClientForm.get('height')?.touched
+                      "
+                    >
+                      Height is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -144,11 +229,22 @@
                     >Arm Length</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="arm-length"
                     id="arm-length"
+                    formControlName="armLength"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('armLength')?.hasError('required') &&
+                        addClientForm.get('armLength')?.touched
+                      "
+                    >
+                      Arm length is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -158,11 +254,22 @@
                     >Leg Length</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="leg-length"
                     id="leg-length"
+                    formControlName="legLength"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('legLength')?.hasError('required') &&
+                        addClientForm.get('legLength')?.touched
+                      "
+                    >
+                      Leg length is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -172,11 +279,22 @@
                     >Waist</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="waist"
                     id="waist"
+                    formControlName="waist"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('waist')?.hasError('required') &&
+                        addClientForm.get('waist')?.touched
+                      "
+                    >
+                      Waist is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -186,11 +304,22 @@
                     >Chest</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="chest"
                     id="chest"
+                    formControlName="chest"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('chest')?.hasError('required') &&
+                        addClientForm.get('chest')?.touched
+                      "
+                    >
+                      Chest is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -200,11 +329,22 @@
                     >Hips</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="hips"
                     id="hips"
+                    formControlName="hips"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('hips')?.hasError('required') &&
+                        addClientForm.get('hips')?.touched
+                      "
+                    >
+                      Hips is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -214,11 +354,22 @@
                     >Neck</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="neck"
                     id="neck"
+                    formControlName="neck"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('neck')?.hasError('required') &&
+                        addClientForm.get('neck')?.touched
+                      "
+                    >
+                      Neck is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -228,25 +379,47 @@
                     >Shoulder</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="shoulder"
                     id="shoulder"
+                    formControlName="shoulder"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('shoulder')?.hasError('required') &&
+                        addClientForm.get('shoulder')?.touched
+                      "
+                    >
+                      Shoulder is required
+                    </span>
+                  </p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                   <label
-                    for="bicep"
+                    for="biceps"
                     class="block text-sm font-medium text-gray-700"
-                    >Bicep</label
+                    >Biceps</label
                   >
                   <input
-                    type="text"
-                    name="bicep"
-                    id="bicep"
+                    type="number"
+                    name="biceps"
+                    id="biceps"
+                    formControlName="biceps"
                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                  <p class="text-red-500 text-xs">
+                    <span
+                      *ngIf="
+                        addClientForm.get('biceps')?.hasError('required') &&
+                        addClientForm.get('biceps')?.touched
+                      "
+                    >
+                      Biceps is required
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -256,8 +429,10 @@
     </div>
     <div class="px-4 py-3 mt-10 text-right sm:px-6">
       <button
-        type="submit"
+        [type]="addClientForm.valid ? 'submit' : 'button'"
+        [disabled]="!addClientForm.valid"
         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        [ngClass]="{ 'cursor-not-allowed': !addClientForm.valid }"
       >
         Add Client
       </button>
