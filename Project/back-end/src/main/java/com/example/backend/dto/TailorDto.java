@@ -13,6 +13,6 @@ public class TailorDto {
     private String email;
     private String password;
     private LocalDateTime createdAt;
-    private final String role = "Tailor";
+    private final String role = "TAILOR";
 
 }

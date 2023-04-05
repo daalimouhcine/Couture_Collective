@@ -24,4 +24,5 @@ public class ClientDto {
     private int neck;
     private int shoulder;
     private int biceps;
+    private TailorDto tailorDto;
 }

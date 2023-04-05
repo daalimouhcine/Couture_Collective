@@ -1,10 +1,12 @@
 package com.example.backend.controllers;
 
 import com.example.backend.dto.ClientDto;
+import com.example.backend.dto.TailorDto;
 import com.example.backend.requests.ClientRequest;
 import com.example.backend.responses.ClientResponse;
 import com.example.backend.responses.SimpleResponse;
 import com.example.backend.services.client.ClientService;
+import com.example.backend.services.tailor.TailorService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private TailorService tailorService;
 
     private List<ClientResponse> dtoToResponse(List<ClientDto> clientDtos) {
         List<ClientResponse> clientResponses = new ArrayList<>();
@@ -56,6 +60,10 @@ public class ClientController {
     public ResponseEntity<SimpleResponse> createClient(@RequestBody ClientRequest clientRequest) {
         ClientDto clientDto = new ClientDto();
         BeanUtils.copyProperties(clientRequest, clientDto);
+
+        TailorDto tailorDto = tailorService.findTailorByEmail(clientRequest.getTailorEmail());
+        clientDto.setTailorDto(tailorDto);
+
         Boolean creatClientStatus = clientService.addClient(clientDto);
         SimpleResponse simpleResponse = new SimpleResponse();
         simpleResponse.setMessage(creatClientStatus ? "Client created successfully" : "Client creation failed");

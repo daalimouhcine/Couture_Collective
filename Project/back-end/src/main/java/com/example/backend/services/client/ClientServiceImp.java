@@ -3,6 +3,7 @@ package com.example.backend.services.client;
 import com.example.backend.dto.ClientDto;
 import com.example.backend.entities.ClientEntity;
 import com.example.backend.repositories.ClientRepository;
+import com.example.backend.repositories.TailorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class ClientServiceImp implements ClientService{
 
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private TailorRepository tailorRepository;
 
     private List<ClientDto> entityToDto(List<ClientEntity> clientEntities) {
         List<ClientDto> clientDtos = new ArrayList<>();
@@ -38,6 +41,9 @@ public class ClientServiceImp implements ClientService{
     public Boolean addClient(ClientDto clientDto) {
         ClientEntity clientEntity = new ClientEntity();
         BeanUtils.copyProperties(clientDto, clientEntity);
+
+        clientEntity.setTailor(tailorRepository.findByEmail(clientDto.getTailorDto().getEmail()));
+
         try {
             clientRepository.save(clientEntity);
             return true;
