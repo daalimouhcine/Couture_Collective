@@ -4,6 +4,7 @@ export class Client {
     email: String = '';
     phone: String = '';
     measuringUnit: String = '';
+    createdAt: Date = new Date();
     height: number = 0;
     armLength: number = 0;
     legLength: number = 0;
