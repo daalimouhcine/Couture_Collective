@@ -4,7 +4,9 @@ import com.example.backend.dto.ProjectDto;
 import com.example.backend.requests.ProjectRequest;
 import com.example.backend.responses.ProjectResponse;
 import com.example.backend.responses.SimpleResponse;
+import com.example.backend.services.client.ClientService;
 import com.example.backend.services.project.ProjectService;
+import com.example.backend.services.tailor.TailorService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,10 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private TailorService tailorService;
 
     private List<ProjectResponse> dtoToResponse(List<ProjectDto> projectDtos) {
         List<ProjectResponse> projectResponses = new ArrayList<>();
@@ -34,6 +40,10 @@ public class ProjectController {
     public ResponseEntity<SimpleResponse> createProject(@RequestBody ProjectRequest projectRequest) {
         ProjectDto projectDto = new ProjectDto();
         BeanUtils.copyProperties(projectRequest, projectDto);
+
+        projectDto.setTailor(tailorService.findTailorById(projectRequest.getTailorId()));
+        projectDto.setClient(clientService.findClientById(projectRequest.getClientId()));
+
         Boolean createProjectStatus = projectService.addProject(projectDto);
         SimpleResponse simpleResponse = new SimpleResponse();
         simpleResponse.setMessage(createProjectStatus ? "Project created successfully" : "Project creation failed");

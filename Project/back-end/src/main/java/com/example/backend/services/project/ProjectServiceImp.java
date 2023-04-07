@@ -1,20 +1,29 @@
 package com.example.backend.services.project;
 
 import com.example.backend.dto.ProjectDto;
+import com.example.backend.entities.ClientEntity;
 import com.example.backend.entities.ProjectEntity;
+import com.example.backend.entities.TailorEntity;
+import com.example.backend.repositories.ClientRepository;
 import com.example.backend.repositories.ProjectRepository;
+import com.example.backend.repositories.TailorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectServiceImp implements ProjectService{
 
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private TailorRepository tailorRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     private List<ProjectDto> entityToDto(List<ProjectEntity> projectEntities) {
         List<ProjectDto> projectDtos = new ArrayList<>();
@@ -36,6 +45,10 @@ public class ProjectServiceImp implements ProjectService{
     public Boolean addProject(ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
         BeanUtils.copyProperties(projectDto, projectEntity);
+
+        projectEntity.setTailor(tailorRepository.findById(projectDto.getTailor().getId()).get());
+        projectEntity.setClient(clientRepository.findById(projectDto.getClient().getId()).get());
+
         try {
             projectRepository.save(projectEntity);
             return true;
