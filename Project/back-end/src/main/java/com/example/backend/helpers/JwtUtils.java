@@ -44,7 +44,7 @@ public class JwtUtils {
                 .claim("username", userDetails.getUsername())
                 .claim("roles", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)))
+                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24 * 7)))
                 .signWith(SignatureAlgorithm.HS256, jwtSigningKey).compact();
     }
 
