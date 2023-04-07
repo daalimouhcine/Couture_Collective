@@ -1,4 +1,5 @@
 export class Client {
+    id: number = 0;
     name: String = '';
     gender: String = '';
     email: String = '';
