@@ -5,6 +5,7 @@ import com.example.backend.responses.TailorResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProjectDto {
     private String type;
     private List<String> keywords;
     private LocalDateTime createdAt;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private float price;
     private Boolean show_price;
     private Boolean is_paid;

@@ -40,6 +40,7 @@ public class ProjectController {
     public ResponseEntity<SimpleResponse> createProject(@RequestBody ProjectRequest projectRequest) {
         ProjectDto projectDto = new ProjectDto();
         BeanUtils.copyProperties(projectRequest, projectDto);
+        projectDto.setKeywords(List.of(projectRequest.getKeywords().split(",")));
 
         projectDto.setTailor(tailorService.findTailorById(projectRequest.getTailorId()));
         projectDto.setClient(clientService.findClientById(projectRequest.getClientId()));

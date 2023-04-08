@@ -45,6 +45,10 @@ public class ProjectServiceImp implements ProjectService{
     public Boolean addProject(ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
         BeanUtils.copyProperties(projectDto, projectEntity);
+        
+        if(projectEntity.getShow_to_public() == true ) {
+            projectEntity.setVisibility_code("");
+        }
 
         projectEntity.setTailor(tailorRepository.findById(projectDto.getTailor().getId()).get());
         projectEntity.setClient(clientRepository.findById(projectDto.getClient().getId()).get());

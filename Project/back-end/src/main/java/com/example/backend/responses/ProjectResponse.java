@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,13 @@ public class ProjectResponse {
     private String type;
     private List<String> keywords = new ArrayList<String>();
     private LocalDateTime createdAt;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private float price;
     private Boolean show_price;
     private Boolean is_paid;
     private Boolean is_completed;
     private Boolean show_to_public;
-    private int visibility_code;
+    private String visibility_code;
     private ClientResponse client;
     private TailorResponse tailor;
 }
