@@ -1,5 +1,5 @@
 export class User {
-    fullName: string = '';
+    name: string = '';
     email: string = '';
     password: string = '';
 }
@@ -7,5 +7,5 @@ export class User {
 export class CurrentUser {
     id: number = 0;
     email: string = '';
-    fullName: string = '';
+    name: string = '';
 }

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FeaturesService } from 'src/app/core/services/features.service';
 import { Client } from 'src/app/features/clients/interfaces/client';
-import { work } from '../../interfaces/work';
+import { Work } from '../../interfaces/work';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-work.component.scss'],
 })
 export class AddWorkComponent implements OnInit {
-  work: work = new work();
+  work: Work = new Work();
 
   clients: Client[] = [];
   loading: boolean = false;
   
   addWorkForm = new FormGroup({
-    clientId: new FormControl(0, [Validators.required]),
+    clientId: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl('', [
       Validators.required,

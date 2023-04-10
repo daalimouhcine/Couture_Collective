@@ -55,8 +55,8 @@ export class FeaturesService {
     );
   }
 
-  delete(data: any, url: string): Observable<Response> {
-    return this._http.delete<any>(environment.baseApi + url).pipe(
+  delete(id: number | undefined, url: string): Observable<Response> {
+    return this._http.delete<any>(environment.baseApi + url + id).pipe(
       catchError((error) => {
         return of(false);
       }),
