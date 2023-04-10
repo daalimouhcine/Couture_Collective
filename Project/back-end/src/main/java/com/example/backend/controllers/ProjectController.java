@@ -2,6 +2,7 @@ package com.example.backend.controllers;
 
 import com.example.backend.dto.ProjectDto;
 import com.example.backend.requests.ProjectRequest;
+import com.example.backend.responses.ClientResponse;
 import com.example.backend.responses.ProjectResponse;
 import com.example.backend.responses.SimpleResponse;
 import com.example.backend.services.client.ClientService;
@@ -31,6 +32,11 @@ public class ProjectController {
         for(ProjectDto projectDto : projectDtos) {
             ProjectResponse projectResponse = new ProjectResponse();
             BeanUtils.copyProperties(projectDto, projectResponse);
+
+            ClientResponse clientResponse = new ClientResponse();
+            BeanUtils.copyProperties(projectDto.getClient(), clientResponse);
+            projectResponse.setClient(clientResponse);
+
             projectResponses.add(projectResponse);
         }
         return projectResponses;

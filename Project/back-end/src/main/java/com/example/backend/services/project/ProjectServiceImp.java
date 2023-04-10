@@ -1,5 +1,6 @@
 package com.example.backend.services.project;
 
+import com.example.backend.dto.ClientDto;
 import com.example.backend.dto.ProjectDto;
 import com.example.backend.entities.ClientEntity;
 import com.example.backend.entities.ProjectEntity;
@@ -45,10 +46,13 @@ public class ProjectServiceImp implements ProjectService{
     public Boolean addProject(ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
         BeanUtils.copyProperties(projectDto, projectEntity);
-        
+
         if(projectEntity.getShow_to_public() == true ) {
-            projectEntity.setVisibility_code("");
+            projectEntity.setVisibility_code(null);
         }
+
+        projectEntity.setIs_completed(false);
+        projectEntity.setIs_completed(false);
 
         projectEntity.setTailor(tailorRepository.findById(projectDto.getTailor().getId()).get());
         projectEntity.setClient(clientRepository.findById(projectDto.getClient().getId()).get());
@@ -110,7 +114,19 @@ public class ProjectServiceImp implements ProjectService{
     @Override
     public List<ProjectDto> getAllProjectsByTailorId(Long tailorId) {
         List<ProjectEntity> projectEntities = (List<ProjectEntity>) projectRepository.findAllByTailorId(tailorId);
-        return entityToDto(projectEntities);
+        List<ProjectDto> projectDtos = new ArrayList<>();
+        for(ProjectEntity projectEntity : projectEntities) {
+            ProjectDto projectDto = new ProjectDto();
+            BeanUtils.copyProperties(projectEntity, projectDto);
+
+            ClientEntity clientEntity = clientRepository.findById(projectEntity.getClient().getId()).get();
+            ClientDto clientDto = new ClientDto();
+            BeanUtils.copyProperties(clientEntity, clientDto);
+            projectDto.setClient(clientDto);
+
+            projectDtos.add(projectDto);
+        }
+        return projectDtos;
     }
 
     @Override
