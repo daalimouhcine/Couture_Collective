@@ -83,7 +83,7 @@
                 name="description"
                 formControlName="description"
                 rows="3"
-                class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+                class="block w-full rounded-md border-0 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
               ></textarea>
             </div>
             <p class="mt-3 text-sm leading-6 text-gray-600">
@@ -133,7 +133,7 @@
                 name="keywords"
                 formControlName="keywords"
                 rows="3"
-                class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+                class="block w-full rounded-md border-0 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
               ></textarea>
             </div>
             <p class="mt-3 text-sm leading-6 text-gray-600">
@@ -177,7 +177,7 @@
                 name="price"
                 formControlName="price"
                 id="price"
-                class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full rounded-md border-0 px-3 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
             <p class="text-red-500 text-xs">
@@ -198,18 +198,18 @@
           <div class="sm:col-span-3 flex w-fit">
             <div class="flex items-center gap-x-3 mt-auto mb-2">
               <input
-                id="showPrice"
-                name="showPrice"
+                id="show_price"
+                name="show_price"
                 type="checkbox"
-                formControlName="showPrice"
-                class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                formControlName="show_price"
+                class="h-4 w-4 border-gray-300 px-3 text-indigo-600 focus:ring-indigo-600"
               />
               <label
-                for="showPrice"
+                for="show_price"
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >Show Price
                 <span class="text-xs"
-                  >(is {{ addWorkForm.get("showPrice")?.value }})</span
+                  >(is {{ addWorkForm.get("show_price")?.value }})</span
                 ></label
               >
             </div>
@@ -227,7 +227,7 @@
                 name="deadline"
                 id="deadline"
                 formControlName="deadline"
-                class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full rounded-md border-0 px-3 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -240,7 +240,7 @@
                 type="checkbox"
                 formControlName="show_to_public"
                 (change)="pass_code_change()"
-                class="h-4 w-4 border-gray-300 mx-5 text-indigo-600 focus:ring-indigo-600"
+                class="h-4 w-4 border-gray-300 px-3 mx-5 text-indigo-600 focus:ring-indigo-600"
               />
               <span class="flex-grow flex flex-col">
                 <span

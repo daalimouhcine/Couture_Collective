@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllWorksComponent } from './components/all-works/all-works.component';
 import { AddWorkComponent } from './components/add-work/add-work.component';
+import { EditWorkComponent } from './components/edit-work/edit-work.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddWorkComponent
+  },
+  {
+    path: 'edit/:id',
+    component: EditWorkComponent
   }
 ];
 

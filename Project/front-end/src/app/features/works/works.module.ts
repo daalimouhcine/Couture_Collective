@@ -5,13 +5,15 @@ import { WorksRoutingModule } from './works-routing.module';
 import { AddWorkComponent } from './components/add-work/add-work.component';
 import { AllWorksComponent } from './components/all-works/all-works.component';
 import { WorkCardComponent } from './components/work-card/work-card.component';
+import { EditWorkComponent } from './components/edit-work/edit-work.component';
 
 
 @NgModule({
   declarations: [
     AddWorkComponent,
     AllWorksComponent,
-    WorkCardComponent
+    WorkCardComponent,
+    EditWorkComponent
   ],
   imports: [
     CommonModule,

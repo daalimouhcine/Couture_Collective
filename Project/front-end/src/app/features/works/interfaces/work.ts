@@ -10,7 +10,7 @@ export class Work {
   keywords: String = '';
   deadline: Date = new Date();
   price: number = 0;
-  showPrice: boolean = true;
+  show_price: boolean = true;
   show_to_public: boolean = true;
   visibility_code?: String = '';
   is_completed?: boolean = false;

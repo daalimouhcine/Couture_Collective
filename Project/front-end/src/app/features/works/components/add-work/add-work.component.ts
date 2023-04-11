@@ -17,7 +17,7 @@ export class AddWorkComponent implements OnInit {
 
   clients: Client[] = [];
   loading: boolean = false;
-  
+
   addWorkForm = new FormGroup({
     clientId: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -32,7 +32,7 @@ export class AddWorkComponent implements OnInit {
     ]),
     deadline: new FormControl(new Date(), [Validators.required]),
     price: new FormControl(0, [Validators.required, Validators.min(1)]),
-    showPrice: new FormControl(true, [Validators.required]),
+    show_price: new FormControl(true, [Validators.required]),
     show_to_public: new FormControl(true, [Validators.required]),
     visibility_code: new FormControl(''),
   });
@@ -54,9 +54,10 @@ export class AddWorkComponent implements OnInit {
   }
 
   pass_code_change() {
-    this.addWorkForm.get('show_to_public')?.value ? this.addWorkForm.get('visibility_code')?.enable : this.addWorkForm.get('visibility_code')?.disable;
+    this.addWorkForm.get('show_to_public')?.value
+      ? this.addWorkForm.get('visibility_code')?.enable
+      : this.addWorkForm.get('visibility_code')?.disable;
   }
-
 
   addWork(form: any): void {
     this.work = form.value;
@@ -66,17 +67,17 @@ export class AddWorkComponent implements OnInit {
       .create(this.work, 'project/create')
       .subscribe((response) => {
         this.loading = false;
-          Swal.fire({
-            title: response.message,
-            icon: response.success ? 'success' : 'error',
-            showConfirmButton: false,
-            timer: 3000,
-          });
-          if (response.success) {
-            setTimeout(() => {
-              this.router.navigate(['/works']);
-            }, 3000);
-          }
+        Swal.fire({
+          title: response.message,
+          icon: response.success ? 'success' : 'error',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        if (response.success) {
+          setTimeout(() => {
+            this.router.navigate(['/works']);
+          }, 3000);
+        }
       });
   }
 }

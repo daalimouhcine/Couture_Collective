@@ -3,6 +3,7 @@ import { Work } from '../../interfaces/work';
 import { FeaturesService } from 'src/app/core/services/features.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-work-card',
@@ -13,7 +14,9 @@ export class WorkCardComponent implements OnInit {
   @Input() work: Work = new Work();
   @Output() workDeleted = new EventEmitter();
 
-  constructor(private featuresService: FeaturesService, private authService: AuthService) {}
+  showOptions = false;
+
+  constructor(private featuresService: FeaturesService, private authService: AuthService, private _http: HttpClient) {}
 
   ngOnInit(): void {}
 
@@ -38,8 +41,52 @@ export class WorkCardComponent implements OnInit {
         });
       }
     });
-    
+  }
 
+  switchCompleted(id: number | undefined) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will update the status for this project!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._http.get('http://localhost:8000/api/project/switchDone/' + id).subscribe((response) => {
+          console.log(response);
+          if (response) {
+            Swal.fire('Updated!', 'The status for completion of this project has updated.', 'success');
+            this.workDeleted.emit();
+          } else {
+            Swal.fire('Error!', 'Something went wrong.', 'error');
+          }
+        });
+      }
+    });
+  }
+
+  switchPaid(id: number | undefined) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will update the status for this project!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._http.get('http://localhost:8000/api/project/switchPaid/' + id).subscribe((response) => {
+          console.log(response);
+          if (response) {
+            Swal.fire('Updated!', 'The status for payment of this project has updated.', 'success');
+            this.workDeleted.emit();
+          } else {
+            Swal.fire('Error!', 'Something went wrong.', 'error');
+          }
+        });
+      }
+    });
   }
 
 }
