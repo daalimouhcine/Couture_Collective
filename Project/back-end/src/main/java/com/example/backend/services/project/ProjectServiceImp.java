@@ -52,7 +52,7 @@ public class ProjectServiceImp implements ProjectService{
         }
 
         projectEntity.setIs_completed(false);
-        projectEntity.setIs_completed(false);
+        projectEntity.setIs_paid(false);
 
         projectEntity.setTailor(tailorRepository.findById(projectDto.getTailor().getId()).get());
         projectEntity.setClient(clientRepository.findById(projectDto.getClient().getId()).get());
@@ -71,6 +71,10 @@ public class ProjectServiceImp implements ProjectService{
         ProjectDto projectDto = new ProjectDto();
         if(projectEntity != null) {
             BeanUtils.copyProperties(projectEntity, projectDto);
+            ClientEntity clientEntity = clientRepository.findById(projectEntity.getClient().getId()).get();
+            ClientDto clientDto = new ClientDto();
+            BeanUtils.copyProperties(clientEntity, clientDto);
+            projectDto.setClient(clientDto);
         }
         return projectDto;
     }
@@ -84,11 +88,31 @@ public class ProjectServiceImp implements ProjectService{
     public Boolean updateProject(Long projectId, ProjectDto projectDto) {
         ProjectEntity projectEntity = projectRepository.findById(projectId).isPresent() ? projectRepository.findById(projectId).get() : null;
         if(projectEntity != null) {
+            System.out.println("not null");
             try {
-                BeanUtils.copyProperties(projectDto, projectEntity);
+                System.out.println("before");
+                projectEntity.setTitle(projectDto.getTitle());
+                projectEntity.setDescription(projectDto.getDescription());
+                projectEntity.setType(projectDto.getType());
+                projectEntity.setDeadline(projectDto.getDeadline());
+
+//                System.out.println(projectEntity.getKeywords());
+//                projectEntity.setKeywords(projectDto.getKeywords());
+//                System.out.println(projectEntity.getKeywords());
+
+                projectEntity.setShow_to_public(projectDto.getShow_to_public());
+                projectEntity.setVisibility_code(projectDto.getVisibility_code());
+                projectEntity.setPrice(projectDto.getPrice());
+                projectEntity.setShow_price(projectDto.getShow_price());
+                projectEntity.setIs_completed(projectDto.getIs_completed());
+
+                projectEntity.setClient(clientRepository.findById(projectDto.getClient().getId()).get());
+
                 projectRepository.save(projectEntity);
+                System.out.println("after");
                 return true;
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return false;
             }
         }
@@ -140,8 +164,39 @@ public class ProjectServiceImp implements ProjectService{
         List<ProjectEntity> projectEntities = (List<ProjectEntity>) projectRepository.findAllByTailorIdAndDone(tailorId, true);
         return entityToDto(projectEntities);
     }
+    @Override
     public List<ProjectDto> getAllNotDoneProjectsByTailorId(Long tailorId) {
         List<ProjectEntity> projectEntities = (List<ProjectEntity>) projectRepository.findAllByTailorIdAndNotDone(tailorId, false);
         return entityToDto(projectEntities);
+    }
+
+    @Override
+    public boolean switchCompleteStatus(Long projectId) {
+        ProjectEntity projectEntity = projectRepository.findById(projectId).isPresent() ? projectRepository.findById(projectId).get() : null;
+        if(projectEntity != null) {
+            try {
+                projectEntity.setIs_completed(!projectEntity.getIs_completed());
+                projectRepository.save(projectEntity);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean switchPaidStatus(Long projectId) {
+        ProjectEntity projectEntity = projectRepository.findById(projectId).isPresent() ? projectRepository.findById(projectId).get() : null;
+        if(projectEntity != null) {
+            try {
+                projectEntity.setIs_paid(!projectEntity.getIs_paid());
+                projectRepository.save(projectEntity);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return false;
     }
 }

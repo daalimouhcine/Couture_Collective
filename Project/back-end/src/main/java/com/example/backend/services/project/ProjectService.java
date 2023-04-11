@@ -17,6 +17,9 @@ public interface ProjectService {
     List<ProjectDto> getAllProjectsByTailorIdAndClientId(Long tailorId, Long clientId);
     List<ProjectDto> getAllDoneProjectsByTailorId(Long tailorId);
     List<ProjectDto> getAllNotDoneProjectsByTailorId(Long tailorId);
+    boolean switchCompleteStatus(Long projectId);
+    boolean switchPaidStatus(Long projectId);
+
 
 
 }
