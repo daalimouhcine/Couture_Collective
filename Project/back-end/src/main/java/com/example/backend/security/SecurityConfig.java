@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/tailor/**", "/api/client/**")
+                .requestMatchers("/api/tailor/**", "/api/client/**", "/api/project/**")
                 .hasAnyAuthority("TAILOR")
                 .anyRequest()
                 .authenticated()
