@@ -25,7 +25,7 @@ public class ProjectDto {
     private Boolean is_paid;
     private Boolean is_completed;
     private Boolean show_to_public;
-    private int visibility_code;
+    private String visibility_code;
     private TailorDto tailor;
     private ClientDto client;
 }

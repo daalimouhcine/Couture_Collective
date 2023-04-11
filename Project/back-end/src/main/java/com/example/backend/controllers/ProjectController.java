@@ -32,6 +32,7 @@ public class ProjectController {
         for(ProjectDto projectDto : projectDtos) {
             ProjectResponse projectResponse = new ProjectResponse();
             BeanUtils.copyProperties(projectDto, projectResponse);
+            projectResponse.setKeywords(String.join(",", projectDto.getKeywords()));
 
             ClientResponse clientResponse = new ClientResponse();
             BeanUtils.copyProperties(projectDto.getClient(), clientResponse);
@@ -70,6 +71,12 @@ public class ProjectController {
         ProjectDto projectDto = projectService.findProjectById(projectId);
         ProjectResponse projectResponse = new ProjectResponse();
         BeanUtils.copyProperties(projectDto, projectResponse);
+        projectResponse.setKeywords(String.join(",", projectDto.getKeywords()));
+
+        ClientResponse clientResponse = new ClientResponse();
+        BeanUtils.copyProperties(projectDto.getClient(), clientResponse);
+        projectResponse.setClient(clientResponse);
+
         return ResponseEntity.ok(projectResponse);
     }
 
@@ -105,10 +112,18 @@ public class ProjectController {
     public ResponseEntity<SimpleResponse> updateProject(@PathVariable Long projectId, @RequestBody ProjectRequest projectRequest) {
         ProjectDto projectDto = new ProjectDto();
         BeanUtils.copyProperties(projectRequest, projectDto);
+
+        projectDto.setKeywords(List.of(projectRequest.getKeywords().split(",")));
+
+        projectDto.setTailor(tailorService.findTailorById(projectRequest.getTailorId()));
+        projectDto.setClient(clientService.findClientById(projectRequest.getClientId()));
+
         Boolean updateProjectStatus = projectService.updateProject(projectId, projectDto);
         SimpleResponse simpleResponse = new SimpleResponse();
         simpleResponse.setMessage(updateProjectStatus ? "Project updated successfully" : "Project updation failed");
         simpleResponse.setSuccess(updateProjectStatus);
+
+        System.out.println(simpleResponse.getMessage());
         return ResponseEntity.ok(simpleResponse);
     }
 
@@ -134,4 +149,25 @@ public class ProjectController {
         List<ProjectResponse> projectResponses = dtoToResponse(projectDtos);
         return ResponseEntity.ok(projectResponses);
     }
+
+    @GetMapping("/switchDone/{projectId}")
+    public ResponseEntity<SimpleResponse> switchDone(@PathVariable Long projectId) {
+        Boolean switchDoneStatus = projectService.switchCompleteStatus(projectId);
+        SimpleResponse simpleResponse = new SimpleResponse();
+        simpleResponse.setMessage(switchDoneStatus ? "Project done status switched successfully" : "Project done status switch failed");
+        simpleResponse.setSuccess(switchDoneStatus);
+        return ResponseEntity.ok(simpleResponse);
+    }
+
+    @GetMapping("/switchPaid/{projectId}")
+    public ResponseEntity<SimpleResponse> switchPaid(@PathVariable Long projectId) {
+        Boolean switchPaidStatus = projectService.switchPaidStatus(projectId);
+        SimpleResponse simpleResponse = new SimpleResponse();
+        simpleResponse.setMessage(switchPaidStatus ? "Project paid status switched successfully" : "Project paid status switch failed");
+        simpleResponse.setSuccess(switchPaidStatus);
+        return ResponseEntity.ok(simpleResponse);
+    }
+
+
+
 }

@@ -18,7 +18,7 @@ public class ProjectResponse {
     private String description;
     private List<String> images = new ArrayList<String>();
     private String type;
-    private List<String> keywords = new ArrayList<String>();
+    private String keywords;
     private LocalDateTime createdAt;
     private LocalDate deadline;
     private float price;
