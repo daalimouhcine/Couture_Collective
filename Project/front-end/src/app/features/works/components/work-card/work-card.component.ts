@@ -53,7 +53,7 @@ export class WorkCardComponent implements OnInit {
       cancelButtonColor: '#d33',
     }).then((result) => {
       if (result.isConfirmed) {
-        this._http.get('http://localhost:8000/api/project/switchDone/' + id).subscribe((response) => {
+        this._http.get('http://localhost:8080/api/project/switchDone/' + id).subscribe((response) => {
           console.log(response);
           if (response) {
             Swal.fire('Updated!', 'The status for completion of this project has updated.', 'success');
@@ -69,14 +69,14 @@ export class WorkCardComponent implements OnInit {
   switchPaid(id: number | undefined) {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You will update the status for this project!',
+      text: 'You will update the payment status for this project!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
     }).then((result) => {
       if (result.isConfirmed) {
-        this._http.get('http://localhost:8000/api/project/switchPaid/' + id).subscribe((response) => {
+        this._http.get('http://localhost:8080/api/project/switchPaid/' + id).subscribe((response) => {
           console.log(response);
           if (response) {
             Swal.fire('Updated!', 'The status for payment of this project has updated.', 'success');

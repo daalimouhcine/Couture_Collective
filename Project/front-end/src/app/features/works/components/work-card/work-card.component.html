@@ -109,55 +109,201 @@
         </svg>
       </button>
       <!-- add button for delete and show details and modify in a hidden area and in condition of "showOptions" to display it -->
-      <div *ngIf="showOptions">
-        <button
-          class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-blue-300 border-2 border-blue-400 hover:border-blue-500 hover:bg-blue-600 shadow-md p-1"
-        >
-          <svg
-            fill="blue"
-            width="20px"
-            height="20px"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+      <div class="flex" *ngIf="showOptions">
+        <div>
+          <button
+            class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-blue-300 border-2 border-blue-400 hover:border-blue-500 hover:bg-blue-600 shadow-md p-1"
           >
-            <path
-              d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"
-            />
-          </svg>
+            <svg
+              fill="blue"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"
+              />
+            </svg>
+          </button>
+          <a
+            [routerLink]="['/works/edit', work.id]"
+            class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-green-300 border-2 border-green-400 hover:border-green-500 hover:bg-green-600 shadow-md p-1"
+          >
+            <svg
+              fill="none"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.293 2.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-13 13A1 1 0 0 1 8 21H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 .293-.707l10-10 3-3zM14 7.414l-9 9V19h2.586l9-9L14 7.414zm4 1.172L19.586 7 17 4.414 15.414 6 18 8.586z"
+                fill="green"
+              />
+            </svg>
+          </a>
+          <button
+            class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-red-300 border-2 border-red-400 hover:border-red-700 hover:bg-red-800 shadow-md p-1"
+            (click)="deleteWork(work.id)"
+          >
+            <svg
+              fill="red"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div>
+          <button
+            class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-gray-300 border-2 border-gray-400 hover:border-gray-500 hover:bg-gray-600 shadow-md p-1"
+            (click)="switchCompleted(work.id)"
+          >
+            <svg
+              *ngIf="!work.is_completed"
+              fill="#ffffff"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              id="check-mark-square"
+              data-name="Line Color"
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon line-color"
+            >
+              <polyline
+                id="secondary"
+                points="16 9.5 11 14.5 8 11.5"
+                style="
+                  fill: none;
+                  stroke: rgb(0, 0, 0);
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2;
+                "
+              ></polyline>
+              <rect
+                id="primary"
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="1"
+                style="
+                  fill: none;
+                  stroke: rgb(0, 0, 0);
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2;
+                "
+              ></rect>
+            </svg>
+            <svg
+              *ngIf="work.is_completed"
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 32 32"
+              enable-background="new 0 0 32 32"
+              xml:space="preserve"
+            >
+              <circle
+                fill="none"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-miterlimit="10"
+                cx="16"
+                cy="16"
+                r="12"
+              />
+              <line
+                fill="none"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-miterlimit="10"
+                x1="11.5"
+                y1="11.5"
+                x2="20.5"
+                y2="20.5"
+              />
+              <line
+                fill="none"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-miterlimit="10"
+                x1="20.5"
+                y1="11.5"
+                x2="11.5"
+                y2="20.5"
+              />
+            </svg>
+          </button>
+          <button
+          class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none border-2 shadow-md p-1"
+          [ngClass]="{'bg-green-300 border-2 border-green-400 hover:border-green-700 hover:bg-green-800': work.is_paid, 'bg-red-300 border-2 border-red-400 hover:border-red-700 hover:bg-red-800': !work.is_paid}"
+          (click)="switchPaid(work.id)"
+        >
+        <svg fill="#fffff" width="20px" height="20px" viewBox="0 0 24 24" id="money-dollar-coin" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><path id="secondary" d="M10,15h2.5A1.5,1.5,0,0,0,14,13.5h0A1.5,1.5,0,0,0,12.5,12h-1A1.5,1.5,0,0,1,10,10.5h0A1.5,1.5,0,0,1,11.5,9H14" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="secondary-2" data-name="secondary" d="M12,9V8m0,8V15" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><circle id="primary" cx="12" cy="12" r="9" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></circle></svg>
         </button>
-        <a
-          [routerLink]="['/works/edit', work.id]"
-          class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-green-300 border-2 border-green-400 hover:border-green-500 hover:bg-green-600 shadow-md p-1"
-        >
-          <svg
-            fill="none"
-            width="20px"
-            height="20px"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-gray-300 border-2 border-gray-400 hover:border-gray-500 hover:bg-gray-600 shadow-md p-1"
           >
-            <path
-              d="M16.293 2.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-13 13A1 1 0 0 1 8 21H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 .293-.707l10-10 3-3zM14 7.414l-9 9V19h2.586l9-9L14 7.414zm4 1.172L19.586 7 17 4.414 15.414 6 18 8.586z"
-              fill="green"
-            />
-          </svg>
-        </a>
-        <button
-          class="text-gray-100 rounded-sm h-7 w-7 flex justify-center items-center focus:outline-none bg-red-300 border-2 border-red-400 hover:border-red-700 hover:bg-red-800 shadow-md p-1"
-          (click)="deleteWork(work.id)"
-        >
-          <svg
-            fill="red"
-            width="20px"
-            height="20px"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"
-            />
-          </svg>
-        </button>
+            <svg
+              fill="#000000"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              id="share"
+              data-name="Line Color"
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon line-color"
+            >
+              <polyline
+                id="secondary"
+                points="8 6 12 2 16 6"
+                style="
+                  fill: none;
+                  stroke: rgb(0, 0, 0);
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2;
+                "
+              ></polyline>
+              <line
+                id="secondary-2"
+                data-name="secondary"
+                x1="12"
+                y1="2"
+                x2="12"
+                y2="15"
+                style="
+                  fill: none;
+                  stroke: rgb(0, 0, 0);
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2;
+                "
+              ></line>
+              <path
+                id="primary"
+                d="M16,10h2a1,1,0,0,1,1,1v9a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H8"
+                style="
+                  fill: none;
+                  stroke: rgb(0, 0, 0);
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2;
+                "
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
