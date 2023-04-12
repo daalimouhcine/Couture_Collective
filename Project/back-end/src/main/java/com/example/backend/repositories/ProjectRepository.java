@@ -10,7 +10,7 @@ public interface ProjectRepository extends CrudRepository<ProjectEntity, Long> {
     ProjectEntity findAllByTitle(String projectTitle);
 
     // findAllByClientId
-    @Query(value = "SELECT * FROM projects WHERE fk_client_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM projects WHERE fk_client_id = ?1 ORDER BY projects.id ASC ", nativeQuery = true)
     Iterable<ProjectEntity> findAllByClientId(Long clientId);
 
     // findAllByTailorId
