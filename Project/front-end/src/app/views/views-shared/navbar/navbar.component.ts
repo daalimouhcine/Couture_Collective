@@ -18,5 +18,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logoutWithGuard();
+    this.profileOpen = false;
   }
 }

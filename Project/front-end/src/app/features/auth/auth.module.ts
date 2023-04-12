@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../alert/alert.module';
 import {MatIconModule} from '@angular/material/icon';
+import { WorksRoutingModule } from '../works/works-routing.module';
 
 
 
@@ -24,7 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
     AlertModule,
     MatIconModule,
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    WorksRoutingModule
   ]
 })
 export class AuthModule { }

@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500,
           }).then(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/works']);
           });
         } else {
           Swal.fire({

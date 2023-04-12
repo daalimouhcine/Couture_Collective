@@ -1,39 +1,38 @@
-<div class="flex flex-col items-center m-10">
+<div class=" flex flex-col items-center m-10">
   <!-- create a head part with title that contains all my clients, and a search bar -->
-  <div class="flex flex-col justify-between items-center">
-    <h1 class="text-2xl font-bold">My Clients</h1>
-    <div class="max-w-xs mx-auto w-full lg:max-w-md">
-      <label for="search" class="sr-only">Search</label>
-      <div class="relative">
-        <div
-          class="text-gray-900 pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
+  <div class="w-full flex flex-col justify-between items-center">
+    <div class="w-full sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-xl font-semibold text-gray-900">My Clients</h1>
+        <p class="mt-2 text-sm text-gray-700">
+          A list of all my clients with there contact details.
+        </p>
+      </div>
+      <div class="mt-4 sm:mt-0 sm:flex-none">
+        <a
+          routerLink="/clients/add"
+          type="button"
+          class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
         >
-          <!-- Heroicon name: solid/search -->
-          <svg
-            class="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </div>
-        <input
-          id="search"
-          class="block w-full py-2 pl-10 pr-3 border rounded-md leading-5 text-gray-900 placeholder-gray-900 focus:outline-none focus:bg-gray-50 focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
-          placeholder="Search"
-          type="search"
-          name="search"
-        />
+          Add Client
+        </a>
       </div>
     </div>
 
-    <div class="mt-10 w-full">
+    <div class="mt-10 mb-20 w-full">
+      <div
+        *ngIf="clients.length == 0"
+        class="min-h-40 flex justify-center items-center mx-auto"
+      >
+        <div class="text-center">
+          <div class="text-2xl font-semibold text-gray-900">
+            No Clients Found
+          </div>
+          <div class="text-sm text-gray-700">
+            You can add a new client by clicking on the button above.
+          </div>
+        </div>
+      </div>
       <ul
         role="list"
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -46,28 +45,31 @@
             <div class="flex-1 truncate">
               <div class="flex items-center justify-between space-x-3">
                 <h3 class="text-gray-900 text-sm font-medium truncate">
-                  {{client.name}}
+                  {{ client.name }}
                 </h3>
                 <span
-                  class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full"
-                  >{{client.gender}}</span
+                  class="flex-shrink-0 inline-block px-2 py-0.5 text-xs font-medium rounded-full"
+                  [ngClass]="{'text-blue-800 bg-blue-100': client.gender == 'male', 'text-red-800 bg-red-100': client.gender == 'female'}"
+                  >{{ client.gender }}</span
                 >
               </div>
               <p class="mt-1 text-gray-500 text-sm truncate">
-                Created At: {{client.createdAt}}
+                Created At: {{ client.createdAt.toString().split('T')[0] }}
               </p>
             </div>
             <span
               class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-500"
             >
-              <span class="font-medium leading-none text-white">{{client.name[0].toUpperCase()+client.name[1].toUpperCase()}}</span>
+              <span class="font-medium leading-none text-white">{{
+                client.name[0].toUpperCase() + client.name[1].toUpperCase()
+              }}</span>
             </span>
           </div>
           <div>
             <div class="-mt-px flex divide-x divide-gray-200">
               <div class="w-0 flex-1 flex">
                 <a
-                  href="mailto:{{client.email}}"
+                  href="mailto:{{ client.email }}"
                   class="relative mx-2 w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
                 >
                   <!-- Heroicon name: solid/mail -->
@@ -85,12 +87,12 @@
                       d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
                     />
                   </svg>
-                  <span class="ml-3 truncate">{{client.email}}</span>
+                  <span class="ml-3 truncate">{{ client.email }}</span>
                 </a>
               </div>
               <div class="-ml-px w-0 flex-1 flex">
                 <a
-                  href="tel:{{client.phone}}"
+                  href="tel:{{ client.phone }}"
                   class="relative w-0 flex-1 mx-2 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
                 >
                   <!-- Heroicon name: solid/phone -->
@@ -105,7 +107,7 @@
                       d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
                     />
                   </svg>
-                  <span class="ml-3 truncate">{{client.phone}}</span>
+                  <span class="ml-3 truncate">{{ client.phone }}</span>
                 </a>
               </div>
             </div>
