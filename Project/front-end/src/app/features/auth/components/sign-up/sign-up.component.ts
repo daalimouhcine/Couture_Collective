@@ -17,10 +17,7 @@ export class SignUpComponent implements OnInit {
   alertColor: string = '';
 
   registerForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
@@ -42,9 +39,9 @@ export class SignUpComponent implements OnInit {
         this.alertColor = response.success ? 'success' : 'danger';
         if (response.success) {
           Swal.fire({
-            position: "center",
-            icon: "success",
-            title: response.data.status,
+            position: 'center',
+            icon: 'success',
+            title: this.alertMessage,
             showConfirmButton: false,
             timer: 1500,
           }).then(() => {
@@ -52,12 +49,12 @@ export class SignUpComponent implements OnInit {
           });
         } else {
           Swal.fire({
-            position: "center",
-            icon: "error",
+            position: 'center',
+            icon: 'error',
             title: response.message,
             showConfirmButton: false,
             timer: 1500,
-          })
+          });
         }
       });
     }
