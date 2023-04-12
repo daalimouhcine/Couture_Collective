@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/features/users/interfaces/users';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -40,9 +41,23 @@ export class SignUpComponent implements OnInit {
         this.alertMessage = response.message;
         this.alertColor = response.success ? 'success' : 'danger';
         if (response.success) {
-          setTimeout(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: response.data.status,
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
             this.router.navigate(['/auth/login']);
-          }, 2000);
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: response.message,
+            showConfirmButton: false,
+            timer: 1500,
+          })
         }
       });
     }
